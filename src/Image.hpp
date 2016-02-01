@@ -3,6 +3,7 @@
 
 #include "default.hpp"
 
+
 namespace tr
 {
 
@@ -30,10 +31,10 @@ public:
     void setColor(const unsigned x, const unsigned y, const Color& c);
 
 private:
-    size_t byteLength();
-    size_t length();
+    // size_t byteLength();
+    // size_t length();
 
-    Color *const pixels_;
+    const std::unique_ptr<Color[]> pixels_;
     const unsigned width_;
     const unsigned height_;
 };

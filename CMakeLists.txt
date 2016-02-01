@@ -16,6 +16,7 @@ if (CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
     -Wold-style-cast \
     -Woverloaded-virtual \
     -Wuninitialized \
+    -g \
     ")
   set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-long-long -pedantic")
 endif ()

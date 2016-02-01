@@ -5,7 +5,7 @@ namespace tr
 {
 
 Image::Image(const unsigned w, const unsigned h)
-: pixels_(new Color[w * h]())
+: pixels_(new Color [w * h] ())
 , width_(w)
 , height_(h)
 {
@@ -14,7 +14,7 @@ Image::Image(const unsigned w, const unsigned h)
 
 Image::~Image()
 {
-    delete pixels_;
+    // NOOP
 }
 
 
@@ -44,15 +44,15 @@ void Image::setColor(const unsigned x, const unsigned y, const Color& c)
 }
 
 
-size_t Image::byteLength()
-{
-    return sizeof(Color) * length();
-}
+// size_t Image::byteLength()
+// {
+//     return sizeof(Color) * length();
+// }
 
 
-size_t Image::length()
-{
-    return width_ * height_;
-}
+// size_t Image::length()
+// {
+//     return width_ * height_;
+// }
 
 } // namespace

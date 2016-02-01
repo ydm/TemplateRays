@@ -6,6 +6,7 @@
 
 // Standard C++
 #include <iostream>
+#include <memory>
 
 // GLM
 #include <glm/glm.hpp>
