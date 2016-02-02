@@ -7,6 +7,9 @@
 namespace tr
 {
 
+class Ray;
+
+
 class Shape
 {
 public:
@@ -19,6 +22,9 @@ public:
     virtual bool intersect(const Ray& ray) const = 0;
 
 protected:
+    /**
+     * Object to world transformation.
+     */
     const Transform o2w_;
 };
 

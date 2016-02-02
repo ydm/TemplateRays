@@ -1,11 +1,14 @@
 #ifndef __TR_TRANSFORM_HPP__
 #define __TR_TRANSFORM_HPP__
 
-#include "Ray.hpp"
+#include "default.hpp"
 
 
 namespace tr
 {
+
+class Ray;
+
 
 class Transform
 {
@@ -27,6 +30,8 @@ public:
 
 private:
     const SharedMat4 m_;
+    // TODO: Make this mutable and cache the inverse value once the
+    // user asks for it.
     const SharedMat4 inv_;
 };
 

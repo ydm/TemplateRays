@@ -10,12 +10,12 @@ namespace tr
 class CameraSample
 {
 public:
-    CameraSample(const glm::vec2 pos,
+    CameraSample(const glm::vec2 coords,
                  const glm::vec2 lens,
                  const float time);
     ~CameraSample() = default;
 
-    const glm::vec2 pos;
+    const glm::vec2 coords;
     const glm::vec2 lens;
     const float time;
 };

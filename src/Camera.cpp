@@ -4,8 +4,8 @@
 namespace tr
 {
 
-Camera::Camera(const Transform& t)
-: transform_(t)
+Camera::Camera(const Transform& w2c)
+: w2c_(w2c)
 {
 }
 

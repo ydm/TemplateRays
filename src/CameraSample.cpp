@@ -4,10 +4,10 @@
 namespace tr
 {
 
-CameraSample::CameraSample(const glm::vec2 pos,
+CameraSample::CameraSample(const glm::vec2 coords,
                            const glm::vec2 lens,
                            const float time)
-: pos(pos)
+: coords(coords)
 , lens(lens)
 , time(time)
 {

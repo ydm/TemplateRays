@@ -1,4 +1,5 @@
 #include "Transform.hpp"
+#include "Ray.hpp"
 
 
 namespace
