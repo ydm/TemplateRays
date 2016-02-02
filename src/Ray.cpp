@@ -4,26 +4,20 @@
 namespace tr
 {
 
-Ray::Ray()
-: origin_()
-, direction_()
-{
-}
-
-
-Ray::Ray(const glm::vec3& origin, const glm::vec3& direction)
+Ray::Ray(const glm::vec4& origin, const glm::vec4& direction, const bool norm)
 : origin_(origin)
-, direction_(direction)
+, direction_(norm ? glm::fastNormalize(direction) : direction)
 {
 }
 
-const glm::vec3& Ray::getOrigin() const
+
+const glm::vec4& Ray::getOrigin() const
 {
     return origin_;
 }
 
 
-const glm::vec3& Ray::getDirection() const
+const glm::vec4& Ray::getDirection() const
 {
     return direction_;
 }

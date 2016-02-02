@@ -15,6 +15,7 @@ class BaseImageConverter
 public:
     BaseImageConverter(const Image& image);
     virtual ~BaseImageConverter();
+
     virtual bool write(std::ostream&) const = 0;
 
     bool save(const std::string& filename) const;

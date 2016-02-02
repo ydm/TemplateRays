@@ -43,6 +43,11 @@ include_directories (${INCLUDE_DIRS})
 add_executable (${NAME} ${SOURCES})
 
 
+# Libraries
+# ---------
+# target_link_libraries (${NAME} m)
+
+
 # C++ features
 # ------------
 target_compile_features (${NAME} PRIVATE cxx_auto_type)

@@ -11,7 +11,7 @@ class Image
 {
 public:
     Image(const unsigned w, const unsigned h);
-    ~Image();
+    virtual ~Image();
 
     /**
      * Get image width.

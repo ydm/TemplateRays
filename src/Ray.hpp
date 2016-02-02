@@ -10,19 +10,22 @@ namespace tr
 class Ray
 {
 public:
-    Ray();
-    Ray(const glm::vec3& origin, const glm::vec3& direction);
-    ~Ray() = default;
+    Ray() = default;
+    /**
+     * @param norm If true, direction will be normalized, otherwise
+     * copied.
+     */
+    Ray(const glm::vec4& origin, const glm::vec4& direction, const bool norm = true);
+    virtual ~Ray() = default;
 
-    const glm::vec3& getOrigin() const;
-    const glm::vec3& getDirection() const;
+    const glm::vec4& getOrigin() const;
+    const glm::vec4& getDirection() const;
 
 private:
-    const glm::vec3 origin_;
-    const glm::vec3 direction_;
+    const glm::vec4 origin_;
+    const glm::vec4 direction_;
 };
 
 } // namespace
-
 
 #endif // __TR_RAY_HPP__
