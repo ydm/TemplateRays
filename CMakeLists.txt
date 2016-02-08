@@ -8,7 +8,7 @@ cmake_minimum_required (VERSION 3.0)
 # -----------------
 
 # Precompiled header
-set (TR_PRECOMPILED_HEADER "src/precompiled.hpp")
+set (TR_PRECOMPILED_HEADER "${CMAKE_SOURCE_DIR}/src/precompiled.hpp")
 
 # Flags
 set (TR_COMPILER_FLAGS "")
@@ -19,12 +19,19 @@ execute_process (COMMAND ${CMAKE_CXX_COMPILER} -v
 		 OUTPUT_QUIET)
 
 if ((TR_COMPILER_VERBOSE_OUTPUT MATCHES "clang"))
+  # For clang we use a special switch that includes the precompiled
+  # header.  There's no other way for clang to use pch afaik.
   set (TR_COMPILER_FLAGS "${TR_COMPILER_FLAGS} -include ${TR_PRECOMPILED_HEADER}")
   set (TR_COMPILER_IS_CLANG 1)
 endif ()
 
-# g++ and clang flags
+# Check if g++ or clang
 if (CMAKE_COMPILER_IS_GNUCXX OR TR_COMPILER_IS_CLANG)
+  # Precompile header
+  set (ENV{CXX} ${CMAKE_CXX_COMPILER})
+  execute_process (COMMAND "${CMAKE_SOURCE_DIR}/scripts/precompile-header.sh")
+
+  # Set compiler flags
   set (TR_COMPILER_FLAGS "${TR_COMPILER_FLAGS} \
     -O0                                        \
     -Wall                                      \
@@ -46,8 +53,8 @@ set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TR_COMPILER_FLAGS}")
 
 # Project files
 # -------------
-file (GLOB_RECURSE SOURCES "src/*.cpp")
-set (INCLUDE_DIRS "dependencies/include")
+file (GLOB_RECURSE SOURCES "${CMAKE_SOURCE_DIR}/src/*.cpp")
+set (INCLUDE_DIRS "${CMAKE_SOURCE_DIR}/dependencies/include")
 
 
 # Project

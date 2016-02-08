@@ -1,27 +1,30 @@
 #!/bin/bash
 
-SCRIPTS_DIR=$(dirname "${BASH_SOURCE[0]}")
-BASE_DIR=$(dirname "$SCRIPTS_DIR")
+SCRIPTS_DIR="$(dirname "${BASH_SOURCE[0]}")"
+BASE_DIR="$(dirname "$SCRIPTS_DIR")"
+HEADER="$BASE_DIR"/src/precompiled.hpp
 
-if [ -e $CXX ] ; then
+if [ -z $CXX ] ; then
     CXX=g++
 fi
 
-for suffix in gch pch ; do
-    $CXX -I"$BASE_DIR"/dependencies/include             \
-	 -O0                                            \
-	 -Wall                                          \
-	 -Wextra                                        \
-	 -Winit-self                                    \
-	 -Winit-self                                    \
-	 -Wmissing-declarations                         \
-	 -Wno-long-long                                 \
-	 -Wold-style-cast                               \
-	 -Woverloaded-virtual                           \
-	 -Wuninitialized                                \
-	 -g                                             \
-	 -pedantic                                      \
-	 -std=gnu++11                                   \
-	 -o "$BASE_DIR"/src/precompiled.hpp.$suffix     \
-	 "$BASE_DIR"/src/precompiled.hpp
-done
+set -o verbose
+rm -f "$HEADER".gch
+rm -f "$HEADER".pch
+$CXX -I"$BASE_DIR"/dependencies/include             \
+     -O0                                            \
+     -Wall                                          \
+     -Wextra                                        \
+     -Winit-self                                    \
+     -Winit-self                                    \
+     -Wmissing-declarations                         \
+     -Wno-long-long                                 \
+     -Wold-style-cast                               \
+     -Woverloaded-virtual                           \
+     -Wuninitialized                                \
+     -g                                             \
+     -pedantic                                      \
+     -std=gnu++11                                   \
+     -o "$HEADER".gch                               \
+     "$HEADER"
+cp "$HEADER".gch "$HEADER".pch
