@@ -30,7 +30,7 @@ public:
 
 private:
     const SharedMat4 m_;
-    // TODO: Make this mutable and cache the inverse value once the
+    // TODO: Make this mutable, null it, inverse and cache once the
     // user asks for it.
     const SharedMat4 inv_;
 };
