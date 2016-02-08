@@ -5,19 +5,19 @@
 namespace
 {
 
-SharedMat4 shared(const glm::mat4& m)
+tr::SharedMat4 shared(const glm::mat4& m)
 {
     return std::make_shared<glm::mat4>(m);
 }
 
-SharedMat4 inverse(const glm::mat4& m)
+tr::SharedMat4 inverse(const glm::mat4& m)
 {
     const glm::mat4& inv = glm::inverse(m);
     return shared(inv);
 }
 
 
-SharedMat4 inverse(const SharedMat4& m)
+tr::SharedMat4 inverse(const tr::SharedMat4& m)
 {
     return inverse(*m);
 }

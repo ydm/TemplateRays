@@ -10,8 +10,9 @@ Camera::Camera(const Transform& w2c)
 }
 
 
-Ray Camera::generateRay(const CameraSample& sample) const
+Ray Camera::generateRay(const CameraSample& /* sample */) const
 {
+    return Ray();
 }
 
 } // namespace

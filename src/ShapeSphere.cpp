@@ -34,8 +34,9 @@ bool ShapeSphere::intersect(const Ray& ray) const
         std::cout << "x1=" << x1 << std::endl;
         return true;
     }
-    else if (numRoots == 2)
+    else // if (numRoots == 2)
     {
+        assert(numRoots == 2 && "numRoots should be 2 at this point");
         std::cout << "x1=" << x1 << ", " << "x2=" << x2 << std::endl;
         return true;
     }
