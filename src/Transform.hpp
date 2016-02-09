@@ -26,7 +26,7 @@ public:
     Ray       operator*(const Ray& ray) const;
     glm::vec4 operator*(const glm::vec4& v) const;
 
-    const glm::vec4& operator[](const std::size_t index) const;
+    const glm::vec4& operator[](const int index) const;
 
 private:
     const SharedMat4 m_;

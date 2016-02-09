@@ -11,13 +11,29 @@ class CameraSample
 {
 public:
     CameraSample(const glm::vec2 coords,
-                 const glm::vec2 lens,
+                 const glm::vec2 l,
                  const float time);
     ~CameraSample() = default;
 
-    const glm::vec2 coords;
-    const glm::vec2 lens;
-    const float time;
+    inline const glm::vec2& getCoords() const
+    {
+        return coords_;
+    }
+
+    inline const glm::vec2& getLens() const
+    {
+        return lens_;
+    }
+
+    inline float getTime() const
+    {
+        return time_;
+    }
+
+private:
+    const glm::vec2 coords_;
+    const glm::vec2 lens_;
+    const float time_;
 };
 
 } // namespace

@@ -14,14 +14,13 @@ class BaseImageConverter
 {
 public:
     BaseImageConverter(const Image& image);
-    virtual ~BaseImageConverter();
-
+    virtual ~BaseImageConverter() = default;
     virtual bool write(std::ostream&) const = 0;
-
     bool save(const std::string& filename) const;
 
 protected:
     const Image& image_;
+
 };
 
 } // namespace

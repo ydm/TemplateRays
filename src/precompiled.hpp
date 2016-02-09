@@ -7,25 +7,20 @@
 #include <cstddef>
 
 // Standard C++
-#include <iostream>  // I'm pretty sure I should not use iostream, but...
 #include <memory>
 #include <string>
 
 // GLM
-#pragma GCC diagnostic push
-#  pragma GCC diagnostic ignored "-Wold-style-cast"
-#  include <glm/glm.hpp>
-#  include <glm/ext.hpp>
-#pragma GCC diagnostic pop
+#include <glm/glm.hpp>
+#include <glm/ext.hpp>
 
 // TR
+#include "Color.hpp"
+
 namespace tr
 {
 
-typedef glm::uvec4                 Color;
 typedef std::shared_ptr<glm::mat4> SharedMat4;
-// typedef glm::vec4                  Point;
-// typedef glm::vec3                  Vector;
 
 } // namespace
 

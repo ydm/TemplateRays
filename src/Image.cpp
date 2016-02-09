@@ -38,9 +38,9 @@ const Color& Image::getColor(const unsigned x, const unsigned y) const
 
 void Image::setColor(const unsigned x, const unsigned y, const Color& c)
 {
-    static const Color MIN(   0,    0,    0,    0);
-    static const Color MAX(0xFF, 0xFF, 0xFF, 0xFF);
-    pixels_[x * width_ + y] = glm::clamp(c, MIN, MAX);
+    static const Color MIN(   0u,    0u,    0u,    0u);
+    static const Color MAX(0xFFu, 0xFFu, 0xFFu, 0xFFu);
+    pixels_[x * width_ + y] = c.clamp(MIN, MAX);
 }
 
 

@@ -30,7 +30,7 @@ bool ImageConverterPPM::write(std::ostream& out) const
             const Color& pixel = image_.getColor(i, j);
             for (unsigned k = 0; k < 3; k++)
             {
-                out << static_cast<char>(pixel[k]);
+                out << pixel[k];
             }
         }
     }

@@ -2,6 +2,7 @@
 #include "ImageConverterPPM.hpp"
 
 // TODO
+// #include <iostream>
 #include "ShapeSphere.hpp"
 #include "Ray.hpp"
 
@@ -27,7 +28,9 @@ int main()
     const glm::vec4 eyePosition(0.0f, 0.0f, 2.0f, 1.0f);
     const glm::vec4 eyeDirection(0.0f, 0.0f, -1.0f, 0.0f);
     const Ray eyeRay(eyePosition, eyeDirection, false);
-    sphere.intersect(eyeRay);
+    // sphere.intersect(eyeRay);
+
+    // std::cout << "sizeof(ShapeSphere): " << sizeof(ShapeSphere) << std::endl;
 
     // auto x = new glm::mat4();
     // auto y = std::make_shared<glm::mat4>();

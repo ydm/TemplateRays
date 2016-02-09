@@ -1,3 +1,3 @@
-#ifndef __clang__
+#ifndef TR_PRECOMPILED_HEADER
 #  include "precompiled.hpp"
 #endif

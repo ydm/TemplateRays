@@ -12,19 +12,7 @@ set -o verbose
 rm -f "$HEADER".gch
 rm -f "$HEADER".pch
 $CXX -I"$BASE_DIR"/dependencies/include             \
-     -O0                                            \
-     -Wall                                          \
-     -Wextra                                        \
-     -Winit-self                                    \
-     -Winit-self                                    \
-     -Wmissing-declarations                         \
-     -Wno-long-long                                 \
-     -Wold-style-cast                               \
-     -Woverloaded-virtual                           \
-     -Wuninitialized                                \
-     -g                                             \
-     -pedantic                                      \
-     -std=gnu++11                                   \
      -o "$HEADER".gch                               \
+     -std=gnu++11                                   \
      "$HEADER"
 cp "$HEADER".gch "$HEADER".pch

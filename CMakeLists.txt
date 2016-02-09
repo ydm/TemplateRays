@@ -7,9 +7,6 @@ cmake_minimum_required (VERSION 3.0)
 # Compiler settings
 # -----------------
 
-# Precompiled header
-set (TR_PRECOMPILED_HEADER "${CMAKE_SOURCE_DIR}/src/precompiled.hpp")
-
 # Flags
 set (TR_COMPILER_FLAGS "")
 
@@ -17,34 +14,90 @@ set (TR_COMPILER_FLAGS "")
 execute_process (COMMAND ${CMAKE_CXX_COMPILER} -v
                  ERROR_VARIABLE TR_COMPILER_VERBOSE_OUTPUT
 		 OUTPUT_QUIET)
-
 if ((TR_COMPILER_VERBOSE_OUTPUT MATCHES "clang"))
-  # For clang we use a special switch that includes the precompiled
-  # header.  There's no other way for clang to use pch afaik.
-  set (TR_COMPILER_FLAGS "${TR_COMPILER_FLAGS} -include ${TR_PRECOMPILED_HEADER}")
   set (TR_COMPILER_IS_CLANG 1)
 endif ()
 
-# Check if g++ or clang
+# Extra flags for g++ and clang
 if (CMAKE_COMPILER_IS_GNUCXX OR TR_COMPILER_IS_CLANG)
   # Precompile header
   set (ENV{CXX} ${CMAKE_CXX_COMPILER})
   execute_process (COMMAND "${CMAKE_SOURCE_DIR}/scripts/precompile-header.sh")
+  add_definitions (-DTR_PRECOMPILED_HEADER)
 
-  # Set compiler flags
-  set (TR_COMPILER_FLAGS "${TR_COMPILER_FLAGS} \
-    -O0                                        \
-    -Wall                                      \
-    -Wextra                                    \
-    -Winit-self                                \
-    -Winit-self                                \
-    -Wmissing-declarations                     \
-    -Wno-long-long                             \
-    -Wold-style-cast                           \
-    -Woverloaded-virtual                       \
-    -Wuninitialized                            \
-    -g                                         \
-    -pedantic                                  \
+  # TODO: -Wstrict-aliasing
+
+  # -Werror                                           \
+  # Set compiler flags (Sorry, I'm obsessed)
+  set (TR_COMPILER_FLAGS "${TR_COMPILER_FLAGS}        \
+    -include ${CMAKE_SOURCE_DIR}/src/precompiled.hpp  \
+    -O0                                               \
+    -g                                                \
+    -Wall                                             \
+    -Wextra                                           \
+    -Wpedantic                                        \
+    -Wno-unknown-warning-option                       \
+    -Wdouble-promotion                                \
+    -Wmissing-include-dirs                            \
+    -Wswitch-default                                  \
+    -Wswitch-enum                                     \
+    -Wswitch-bool                                     \
+    -Wsync-nand                                       \
+    -Wunused-but-set-parameter                        \
+    -Wunused-const-variable                           \
+    -Wuninitialized                                   \
+    -Wstrict-aliasing=3                               \
+    -Wstrict-overflow=5                               \
+    -Wsuggest-attribute=pure                          \
+    -Wsuggest-attribute=const                         \
+    -Wsuggest-attribute=noreturn                      \
+    -Wsuggest-final-types                             \
+    -Wsuggest-final-methods                           \
+    -Wsuggest-override                                \
+    -Wduplicated-cond                                 \
+    -Wtrampolines                                     \
+    -Wfloat-equal                                     \
+    -Wundef                                           \
+    -Wshadow                                          \
+    -Wunsafe-loop-optimizations                       \
+    -Wplacement-new=2                                 \
+    -Wcast-qual                                       \
+    -Wcast-align                                      \
+    -Wconditionally-supported                         \
+    -Wconversion                                      \
+    -Wzero-as-null-pointer-constant                   \
+    -Wdate-time                                       \
+    -Wuseless-cast                                    \
+    -Wsign-conversion                                 \
+    -Wfloat-conversion                                \
+    -Wsizeof-pointer-memaccess                        \
+    -Wlogical-op                                      \
+    -Waggregate-return                                \
+    -Wmissing-declarations                            \
+    -Wmissing-field-initializers                      \
+    -Wopenmp-simd                                     \
+    -Wpacked                                          \
+    -Wpadded                                          \
+    -Wredundant-decls                                 \
+    -Winline                                          \
+    -Winvalid-pch                                     \
+    -Wlong-long                                       \
+    -Wvariadic-macros                                 \
+    -Wvarargs                                         \
+    -Wvector-operation-performance                    \
+    -Wdisabled-optimization                           \
+    -Whsa                                             \
+    -Wabi                                             \
+    -Wabi-tag                                         \
+    -Wctor-dtor-privacy                               \
+    -Wnoexcept                                        \
+    -Wstrict-null-sentinel                            \
+    -Wold-style-cast                                  \
+    -Woverloaded-virtual                              \
+    -Wsign-promo                                      \
+    -Wtemplates                                       \
+    -Wmultiple-inheritance                            \
+    -Wvirtual-inheritance                             \
     ")
 endif ()
 

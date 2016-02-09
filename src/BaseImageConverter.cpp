@@ -10,11 +10,6 @@ BaseImageConverter::BaseImageConverter(const Image& image)
 {
 }
 
-BaseImageConverter::~BaseImageConverter()
-{
-    // NOOP
-}
-
 bool BaseImageConverter::save(const std::string& filename) const
 {
     std::fstream f(filename, std::ios::binary | std::ios::out);

@@ -2,6 +2,9 @@
 #include "Ray.hpp"
 #include "utilities.hpp"
 
+// TODO
+#include <iostream>
+
 
 namespace tr
 {
