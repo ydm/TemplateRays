@@ -49,6 +49,6 @@ install_manifest.txt
 # ------------------------
 
 .DS_Store
-/output.ppm
 /TemplateRays
-/TemplateRays.dSYM/
+/TemplateRays.dSYM
+/output.ppm
