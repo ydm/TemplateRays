@@ -10,16 +10,4 @@ Ray::Ray(const glm::vec4& origin, const glm::vec4& direction, const bool norm)
 {
 }
 
-
-const glm::vec4& Ray::getOrigin() const
-{
-    return origin_;
-}
-
-
-const glm::vec4& Ray::getDirection() const
-{
-    return direction_;
-}
-
 } // namespace

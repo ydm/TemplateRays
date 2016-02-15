@@ -1,4 +1,4 @@
-#include "Color.hpp"
+#include "ColorRGB.hpp"
 #include <algorithm>
 #include <functional>
 
@@ -19,9 +19,9 @@ namespace tr
 {
 
 // Static methods
-Color Color::clamp(const Color& x, const Color& min, const Color& max)
+ColorRGB ColorRGB::clamp(const ColorRGB& x, const ColorRGB& min, const ColorRGB& max)
 {
-    return Color(
+    return ColorRGB(
         clampChannel(x[0], min[0], max[0]),
         clampChannel(x[1], min[1], max[1]),
         clampChannel(x[2], min[2], max[2]),
@@ -31,17 +31,17 @@ Color Color::clamp(const Color& x, const Color& min, const Color& max)
 
 
 // Constructor
-Color::Color(const unsigned char red,
-             const unsigned char green,
-             const unsigned char blue,
-             const unsigned char alpha)
+ColorRGB::ColorRGB(const unsigned char red,
+                   const unsigned char green,
+                   const unsigned char blue,
+                   const unsigned char alpha)
 : channels_{red, green, blue, alpha}
 {
 }
 
 
 // Modifier methods
-void Color::clamp(const Color& min, const Color& max)
+void ColorRGB::clamp(const ColorRGB& min, const ColorRGB& max)
 {
     for (unsigned i = 0; i < 4; i++)
     {
@@ -49,15 +49,14 @@ void Color::clamp(const Color& min, const Color& max)
     }
 }
 
-} // namespace
+} // namespace tr
 
 
-std::ostream& operator<<(std::ostream& out, const tr::Color& color)
+std::ostream& operator<<(std::ostream& out, const tr::ColorRGB& color)
 {
     for (unsigned i = 0; i < 4; i++)
     {
         out << color[i];
     }
-    return out;
     return out;
 }

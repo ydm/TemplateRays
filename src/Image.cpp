@@ -5,7 +5,7 @@ namespace tr
 {
 
 Image::Image(const unsigned w, const unsigned h)
-: pixels_(new Color [w * h] ())
+: pixels_(new ColorRGB [w * h] ())
 , width_(w)
 , height_(h)
 {
@@ -30,16 +30,16 @@ unsigned Image::getHeight() const
 }
 
 
-const Color& Image::getColor(const unsigned x, const unsigned y) const
+const ColorRGB& Image::getColorRGB(const unsigned x, const unsigned y) const
 {
     return pixels_[x * width_ + y];
 }
 
 
-void Image::setColor(const unsigned x, const unsigned y, const Color& c)
+void Image::setColorRGB(const unsigned x, const unsigned y, const ColorRGB& c)
 {
-    static const Color MIN(   0u,    0u,    0u,    0u);
-    static const Color MAX(0xFFu, 0xFFu, 0xFFu, 0xFFu);
+    static const ColorRGB MIN(   0u,    0u,    0u,    0u);
+    static const ColorRGB MAX(0xFFu, 0xFFu, 0xFFu, 0xFFu);
     pixels_[x * width_ + y] = c.clamp(MIN, MAX);
 }
 

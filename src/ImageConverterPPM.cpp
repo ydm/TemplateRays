@@ -27,7 +27,7 @@ bool ImageConverterPPM::write(std::ostream& out) const
     {
         for (unsigned j = 0; j < image_.getHeight(); j++)
         {
-            const Color& pixel = image_.getColor(i, j);
+            const ColorRGB& pixel = image_.getColorRGB(i, j);
             for (unsigned k = 0; k < 3; k++)
             {
                 out << pixel[k];

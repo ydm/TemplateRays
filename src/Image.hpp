@@ -24,17 +24,17 @@ public:
     /**
      * Return black if (x, y) is out of bounds.
      */
-    const Color& getColor(const unsigned x, const unsigned y) const;
+    const ColorRGB& getColorRGB(const unsigned x, const unsigned y) const;
     /**
      * Set color of pixel at (x, y).
      */
-    void setColor(const unsigned x, const unsigned y, const Color& c);
+    void setColorRGB(const unsigned x, const unsigned y, const ColorRGB& c);
 
 private:
     // size_t byteLength();
     // size_t length();
 
-    const std::unique_ptr<Color[]> pixels_;
+    const std::unique_ptr<ColorRGB[]> pixels_;
     const unsigned width_;
     const unsigned height_;
 };

@@ -8,14 +8,14 @@
 namespace tr
 {
 
-class Color
+class ColorRGB
 {
 public:
-    Color(const unsigned char red   = 0u,
-          const unsigned char green = 0u,
-          const unsigned char blue  = 0u,
-          const unsigned char alpha = 0u);
-    ~Color() = default;
+    ColorRGB(const unsigned char red   = 0u,
+             const unsigned char green = 0u,
+             const unsigned char blue  = 0u,
+             const unsigned char alpha = 0u);
+    ~ColorRGB() = default;
 
 
     // Accessors
@@ -40,13 +40,13 @@ public:
     // Static methods
     // --------------
 
-    static Color clamp(const Color& x, const Color& min, const Color& max);
+    static ColorRGB clamp(const ColorRGB& x, const ColorRGB& min, const ColorRGB& max);
 
 
     // Const methods
     // -------------
 
-    inline Color clamp(const Color& min, const Color& max) const
+    inline ColorRGB clamp(const ColorRGB& min, const ColorRGB& max) const
     {
         return clamp(*this, min, max);
     }
@@ -55,7 +55,7 @@ public:
     // Modifier methods
     // ----------------
 
-    void clamp(const Color& min, const Color& max);
+    void clamp(const ColorRGB& min, const ColorRGB& max);
 
 private:
     unsigned char channels_[4];
@@ -64,7 +64,7 @@ private:
 } // namespace
 
 
-std::ostream& operator<<(std::ostream& out, const tr::Color& color);
+std::ostream& operator<<(std::ostream& out, const tr::ColorRGB& color);
 
 
 #endif // __TR_COLOR_HPP__

@@ -14,9 +14,9 @@ class Camera
 public:
     Camera() = default;
     /**
-     * @param w2c -- World space to camera space transformation.
+     * @param w2c -- Camera space to world space transformation.
      */
-    Camera(const Transform& w2c);
+    Camera(const Transform& c2w);
     virtual ~Camera() = default;
 
     Ray generateRay(const CameraSample& sample) const;
@@ -25,7 +25,7 @@ private:
     /**
      * World to camera space transformation.
      */
-    const Transform w2c_;
+    const Transform c2w_;
 };
 
 } // namespace

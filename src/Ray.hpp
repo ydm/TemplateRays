@@ -18,8 +18,15 @@ public:
     Ray(const glm::vec4& origin, const glm::vec4& direction, const bool norm = true);
     virtual ~Ray() = default;
 
-    const glm::vec4& getOrigin() const;
-    const glm::vec4& getDirection() const;
+    inline const glm::vec4& getOrigin() const
+    {
+        return origin_;
+    }
+
+    inline const glm::vec4& getDirection() const
+    {
+        return direction_;
+    }
 
 private:
     const glm::vec4 origin_;

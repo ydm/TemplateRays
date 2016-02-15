@@ -15,7 +15,7 @@
 #include <glm/ext.hpp>
 
 // TR
-#include "Color.hpp"
+#include "ColorRGB.hpp"
 
 namespace tr
 {
