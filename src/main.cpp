@@ -21,8 +21,8 @@ int main()
             image.setColorRGB(i, j, ColorRGB(255u, 0u, 0u, 255u));
         }
     }
-    //const ImageConverterPPM conv(image);
-    //conv.save("output.ppm");
+    const ImageConverterPPM conv(image);
+    conv.save("output.ppm");
 
     // const glm::vec3 spherePosition(0.0f, 0.5f, -1.0f);
     // const Transform sphereTransform(glm::translate(spherePosition));
@@ -53,20 +53,22 @@ int main()
     //     0.0f, 0.0f, 0.0f, 1.0f
     // );
 
-    // const float right  =  5.0f;
-    // const float left   = -5.0f;
-    // const float top    =  5.0f;
-    // const float bottom = -5.0f;
+    const float right  =  5.0f;
+    const float left   = -5.0f;
+    const float top    =  5.0f;
+    const float bottom = -5.0f;
     // const float near   =  0.0f;
     // const float far    = 10.0f;
-    // const float x2     = (right - left);
-    // const float y2     = (top - bottom);
-    // const glm::mat4 ndcToWorld(
-    //       x2, 0.0f, 0.0f, 0.0f,
-    //     0.0f,   y2, 0.0f, 0.0f,
-    //     0.0f, 0.0f, 1.0f, 0.0f,
-    //     0.0f, 0.0f, 0.0f, 1.0f
-    // );
+    const float x2     = (right - left);
+    const float y2     = (top - bottom);
+    const glm::mat4 ndcToWorld(
+          x2, 0.0f, 0.0f, 0.0f,
+        0.0f,   y2, 0.0f, 0.0f,
+        0.0f, 0.0f, 1.0f, 0.0f,
+        0.0f, 0.0f, 0.0f, 1.0f
+    );
+
+    std::cout << ndcToWorld * glm::vec4() << std::endl;
 
     // for (float x = 0.5f; x <= 799.5f; x += 1.0f)
     // {
