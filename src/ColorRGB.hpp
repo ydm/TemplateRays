@@ -11,10 +11,19 @@ namespace tr
 class ColorRGB
 {
 public:
+    static ColorRGB fromFloat(const float red   = 0.0f,
+                              const float green = 0.0f,
+                              const float blue  = 0.0f,
+                              const float alpha = 0.0f);
+
     ColorRGB(const unsigned char red   = 0u,
              const unsigned char green = 0u,
              const unsigned char blue  = 0u,
              const unsigned char alpha = 0u);
+    // ColorRGB(const float red   = 0.0f,
+    //          const float green = 0.0f,
+    //          const float blue  = 0.0f,
+    //          const float alpha = 0.0f);
     ~ColorRGB() = default;
 
 

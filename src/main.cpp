@@ -6,19 +6,76 @@
 #include "OrthographicCamera.hpp"
 #include "ShapeSphere.hpp"
 #include "Ray.hpp"
+#include <cmath>
+
+
+namespace
+{
+
+tr::ColorRGB nedy1(float x, float y)
+{
+    // (x, y)
+    // distance to .5 .5
+    x = x * 2 + 0.5f;
+    y = y * 2 + 0.5f;
+    float a = x - 0.5f;
+    float b = y - 0.5f;
+    float distance = std::sqrt(a*a + b*b);
+    
+    float c = x + 0.25f;
+    float d = y + 0.25f;
+    float distanceG = std::sqrt(c*c + d*d);
+    // 1:  0.707106781187
+    return tr::ColorRGB::fromFloat(
+        0.0f,
+        distanceG,
+        0.707106781187 - distance,
+        1.0f
+    );
+}
+
+tr::ColorRGB f(float x, float y)
+{
+    using namespace std;
+    
+    //x = x * 2;
+    y = y * 2;
+    int z = sqrt(x*x + y*y);
+    
+    float c = x + 0.25f;
+    float d = y + 0.25f;
+    float distanceG = sqrt(c*c + d*d);
+    
+    return tr::ColorRGB::fromFloat(
+        x,
+        sin(distanceG),
+        abs(cos(z)),
+        1.0f
+    );
+}
+
+} // namespace
 
 
 int main()
 {
-    const unsigned WIDTH  = 800u;
-    const unsigned HEIGHT = 600u;
     using namespace tr;
+
+    const unsigned WIDTH  = 600u;
+    const unsigned HEIGHT = 600u;
+
+    const glm::mat4 rasterToNdc(
+        
+    );
+
     Image image(WIDTH, HEIGHT);
-    for (unsigned i = 0; i < WIDTH; i++)
+    for (unsigned row = 0; row < HEIGHT; row++)
     {
-        for (unsigned j = 0; j < HEIGHT; j++)
+        for (unsigned col = 0; col < WIDTH; col++)
         {
-            image.setColorRGB(i, j, ColorRGB(255u, 0u, 0u, 255u));
+            const float ndcx = static_cast<float>(col) / (WIDTH  - 1);
+            const float ndcy = static_cast<float>(row) / (HEIGHT - 1);
+            image.setColorRGB(row, col, f(ndcx, ndcy));
         }
     }
     const ImageConverterPPM conv(image);
@@ -52,24 +109,25 @@ int main()
     //     0.0f, 0.0f, 1.0f, 0.0f,
     //     0.0f, 0.0f, 0.0f, 1.0f
     // );
-
     const float right  =  5.0f;
     const float left   = -5.0f;
     const float top    =  5.0f;
     const float bottom = -5.0f;
+
+    
+    
     // const float near   =  0.0f;
     // const float far    = 10.0f;
-    const float x2     = (right - left);
-    const float y2     = (top - bottom);
-    const glm::mat4 ndcToWorld(
-          x2, 0.0f, 0.0f, 0.0f,
-        0.0f,   y2, 0.0f, 0.0f,
-        0.0f, 0.0f, 1.0f, 0.0f,
-        0.0f, 0.0f, 0.0f, 1.0f
-    );
+    // const float x2     = (right - left);
+    // const float y2     = (top - bottom);
+    // const glm::mat4 ndcToWorld(
+    //       x2, 0.0f, 0.0f, 0.0f,
+    //     0.0f,   y2, 0.0f, 0.0f,
+    //     0.0f, 0.0f, 1.0f, 0.0f,
+    //     0.0f, 0.0f, 0.0f, 1.0f
+    // );
 
-    std::cout << ndcToWorld * glm::vec4() << std::endl;
-
+    // std::cout << ndcToWorld * glm::vec4() << std::endl;
     // for (float x = 0.5f; x <= 799.5f; x += 1.0f)
     // {
     //     for (float y = 0.5f; y <= 599.5f; y += 1.0f)

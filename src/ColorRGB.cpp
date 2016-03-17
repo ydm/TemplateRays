@@ -2,6 +2,9 @@
 #include <algorithm>
 #include <functional>
 
+// TODO
+#include <iostream>
+
 
 namespace
 {
@@ -30,6 +33,27 @@ ColorRGB ColorRGB::clamp(const ColorRGB& x, const ColorRGB& min, const ColorRGB&
 }
 
 
+// Static methods
+ColorRGB ColorRGB::fromFloat(const float red,
+                             const float green,
+                             const float blue,
+                             const float alpha)
+{
+    if (0 > red   || red > 1.0f ||
+        0 > green || green > 1.0f ||
+        0 > blue  || blue > 1.0f ||
+        0 > alpha || alpha > 1.0f)
+    {
+        std::cout << "NEDI E PEDALCHE: " << red << ", " << green << ", " << blue << ", " << alpha << "\n";
+    }
+        
+    return ColorRGB(static_cast<unsigned char>(red * 255),
+                    static_cast<unsigned char>(green * 255),
+                    static_cast<unsigned char>(blue * 255),
+                    static_cast<unsigned char>(alpha * 255));
+}
+
+
 // Constructor
 ColorRGB::ColorRGB(const unsigned char red,
                    const unsigned char green,
@@ -38,7 +62,6 @@ ColorRGB::ColorRGB(const unsigned char red,
 : channels_{red, green, blue, alpha}
 {
 }
-
 
 // Modifier methods
 void ColorRGB::clamp(const ColorRGB& min, const ColorRGB& max)
